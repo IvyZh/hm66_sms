@@ -2,6 +2,7 @@ package com.ivy.sms.activity;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.ivy.sms.R;
@@ -69,6 +71,8 @@ public class MainActivity extends BaseActivity {
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) {
 //				L.v("--positionOffsetPixels-"+positionOffsetPixels);
+				InputMethodManager imm = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(MainActivity.this.getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 				ViewPropertyAnimator.animate(viewTag).translationX(position*(displayWidth/3)+positionOffsetPixels/3).setDuration(0);
 			}
 			
