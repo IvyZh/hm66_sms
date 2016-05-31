@@ -8,6 +8,11 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,6 +27,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.ivy.sms.base.BaseActivity" />
+        <activity android:name="com.ivy.sms.activity.ConversionDetailActivity" />
+        <activity android:name="com.ivy.sms.activity.GroupDetailActivity" />
+        <activity
+            android:name="com.ivy.sms.activity.NewSmsActivity"
+            android:windowSoftInputMode="adjustPan|adjustUnspecified" />
+
+        <receiver android:name="com.ivy.sms.receiver.SendSmsReceiver" >
+            <intent-filter>
+                <action android:name="com.ivy.sms.sendsms" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.ivy.sms.provider.GroupContentProvider"
+            android:authorities="com.ivy.sms.group"
+            android:exported="true" >
+        </provider>
     </application>
 
 </manifest>
